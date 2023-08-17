@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/tutor/static/css/main.39386fb6.css",
+    "main.js": "/tutor/static/js/main.2f5d5eb5.js",
+    "static/media/hero.jpg": "/tutor/static/media/hero.0a4893421f4eb80a395c.jpg",
+    "static/media/logo.png": "/tutor/static/media/logo.62ebd64b5a9d08ed6c2b.png",
+    "static/media/python.png": "/tutor/static/media/python.f9dc70303b81180b774d.png",
+    "static/media/c-programming.png": "/tutor/static/media/c-programming.c0da8156a8d17281c29e.png",
+    "static/media/c++.png": "/tutor/static/media/c++.3f8430b31b0960aae7e0.png",
+    "static/media/digital-marketing.png": "/tutor/static/media/digital-marketing.513b2497911590bd7783.png",
+    "static/media/javascript.png": "/tutor/static/media/javascript.c82f51737aaa6831750c.png",
+    "index.html": "/tutor/index.html",
+    "main.39386fb6.css.map": "/tutor/static/css/main.39386fb6.css.map",
+    "main.2f5d5eb5.js.map": "/tutor/static/js/main.2f5d5eb5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.39386fb6.css",
+    "static/js/main.2f5d5eb5.js"
+  ]
+}
