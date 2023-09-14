@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Yatra+One&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,400;1,300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Yatra+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,400;1,300&display=swap");
+@import "./mixins.scss";
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Lato", sans-serif;
-  font-family: 'Yatra One', cursive;
+  font-family: "Yatra One", cursive;
 }
 
 html::-webkit-scrollbar {
@@ -18,16 +19,10 @@ html {
   background: #5539f1;
   box-sizing: border-box;
   font-family: "Lato", sans-serif;
-  font-family: 'Yatra One', cursive;
+  font-family: "Yatra One", cursive;
   font-size: 14px;
   font-weight: 400;
   scroll-behavior: smooth;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
 }
 
 /* ------------- CSS DATA ------------- */
@@ -39,71 +34,212 @@ html {
 }
 
 @mixin btn() {
-          margin: 5px 0 0;
-          border: 1px solid #aaa;
-          padding: 5px 10px;
-          cursor: pointer;
-          background: none;
-          border: 0.5px solid #b8bddd;
-          border-radius: 10px;
-          transition: all 0.3s ease-in-out;
-  
-          &:hover {
-            background: #2f64f3;
-            color: #fff;
-          }
+  margin: 5px 0 0;
+  border: 1px solid #aaa;
+  padding: 5px 10px;
+  cursor: pointer;
+  background: none;
+  border: 0.5px solid #b8bddd;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background: #2f64f3;
+    color: #fff;
+  }
 }
+
 // courses
 .courses {
   padding-top: 12vh;
+  @include sm {
+    padding-top: 2vh;
+  }
 }
 
-// main navbar 
+// main navbar
 
 .main-navbar {
   height: 8vh;
   width: 100%;
   background: #fff;
-  // background: #000;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50%;
+  backdrop-filter: blur(5px);
+  background: hsla(0, 0%, 100%, 0.1);
   position: fixed;
   @include flex();
   justify-content: space-around;
   z-index: 99;
+  .mnflex {
+    height: 8vh;
+  }
+  @include sm {
+    display: inline;
+    align-items: start;
+    .mnflex {
+      height: 8vh;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+
+  &.top {
+    backdrop-filter: blur(3.5px);
+    -webkit-backdrop-filter: blur(3.5px);
+  }
+  &.show {
+    background-color: var(--black3);
+  }
+  &.hide {
+    transform: translateY(-80px);
+  }
   .logo {
     height: 100%;
     @include flex();
     animation: logo 8s linear infinite;
-
     img {
-      height: 95%
+      height: 95%;
     }
   }
 
   @keyframes logo {
-    0%   {rotate: 0deg;}
-    100% {rotate: 360deg;}
+    0% {
+      rotate: 0deg;
+    }
+    100% {
+      rotate: 360deg;
+    }
   }
 
   ul {
     list-style: none;
+    @include sm {
+      backdrop-filter: blur(10px);
+      background: hsla(0, 0%, 100%, 0.5);
+      background: #fff;
+      padding: 20px;
+      display: none;
+
+    }
 
     li {
       display: inline-block;
       margin: 10px;
-
+      @include sm {
+        display: block;
+        width: 100%;
+        margin-top: 20px;
+      }
+      .logout {
+        @include btn();
+        margin-top: 10px;
+      }
       a {
         text-decoration: none;
         // color: #fff;
         color: #2f64f3;
+        color: #000;
         transition: all 1s ease-in-out;
+        @include sm {
+          border-bottom: 1px solid;
+        }
         &:hover {
           border-bottom: 1px solid #2f64f3;
           border-radius: 2px;
         }
       }
+    }
+  }
+  .mul {
+    display: block;
+  }
 
+  .mdmenu {
+    display: none;
+    @include sm {
+      display: block;
+      font-size: 24px;
+    }
+  }
+}
+
+/* ------------ hero styling ------------ */
+.hero {
+  height: 75vh;
+  width: 100vw;
+  background: #fff;
+  border-radius: 100% 0% 63% 37% / 0% 70% 30% 100%;
+  @include flex();
+  @include sm {
+    height: 100%;
+    flex-direction: column;
+    border-radius: 9% 91% 14% 86% / 93% 0% 100% 7%;
+
+  }
+  .hero-container {
+    height: 60vh;
+    width: 80vw;
+    @include flex();
+    overflow: hidden;
+    @include sm {
+      margin-top: 10vh;
+      flex-direction: column;
+      height: 100%;
+    }
+    .hero-left,
+    .hero-right {
+      width: 50%;
+      margin: 10px;
+      @include sm {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    .hero-left {
+      @include flex();
+      flex-direction: column;
+      align-items: start;
+      h2 {
+        font-size: 42px;
+        @include sm {
+          font-size: 32px;
+        }
+      }
+      p {
+        font-family: "Josefin Sans", sans-serif;
+        margin: 5px 0 5px 0;
+        color: #2f64f3;
+      }
+      .enroll-btn {
+        text-decoration: none;
+        margin-top: 10px;
+        color: #fff;
+        border: 1px solid #fefefe;
+        padding: 10px 15px;
+        cursor: pointer;
+        background: #2f64f3;
+        border-radius: 20px;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background: none;
+          color: #000;
+          border: 1px solid #000;
+        }
+      }
+    }
+    .hero-right {
+      height: 100%;
+      @include sm {
+        height: 320px;
+        margin: 0;
+        padding: 0;
+      }
+      img {
+        height: 80%;
+      }
     }
   }
 }
@@ -213,10 +349,12 @@ html {
   transform: translatey(-2px);
 }
 
+
 /* ---------- Card styling ------------------ */
 
 .subtle {
   color: #aaa;
+  color: #041544;
 }
 
 .main-card--cointainer {
@@ -224,6 +362,10 @@ html {
   grid-template-columns: repeat(3, minmax(300px, 500px));
   grid-gap: 50px;
   justify-content: space-around;
+  @include sm {
+    margin: 10px;
+
+  }
 }
 
 .card-container {
@@ -258,21 +400,21 @@ html {
 }
 
 .card-circle {
-  border: 1px solid #aaa;
+  border: 1px solid #fff;
   border-radius: 50%;
   display: inline-block;
   line-height: 22px;
   font-size: 12px;
   height: 25px;
-  text-align: center;
   width: 25px;
+  margin-bottom: 10px;
 }
 
 .card-author {
   display: block;
   font-size: 12px;
   letter-spacing: 0.5px;
-  margin: 15px 0 0;
+  margin: 5px 0 5px 0;
   text-transform: uppercase;
 }
 
@@ -373,6 +515,9 @@ html {
   border-top-left-radius: 20px;
 }
 
+
+
+
 /* _______________- details section -_________________ */
 
 .details-container {
@@ -381,6 +526,9 @@ html {
   @include flex();
   flex-direction: column;
   border-radius: 100% 0% 63% 37% / 0% 70% 30% 100%;
+  @include sm {
+    border-radius: 11% 89% 14% 86% / 91% 0% 100% 9%;
+  }
   background: #fff;
   .details-heading {
     width: 100%;
@@ -396,29 +544,28 @@ html {
     @include flex();
     .detail-card {
       @include flex();
-      .detail-img, details {
+      .detail-img,
+      details {
         padding: 20px;
       }
       .detail-img {
-       height: 100%;
-       width: 50%;
+        height: 100%;
+        width: 50%;
       }
       .details {
         @include flex();
         flex-direction: column;
         align-items: start;
         h1 {
-           margin: 20px 0px 20px 0px;
-           font-size: 32px;
+          margin: 20px 0px 20px 0px;
+          font-size: 32px;
         }
         .enroll-btn {
-           @include btn();
+          @include btn();
         }
       }
-
     }
   }
-
 }
 // .detail-card-cointainer {
 //   margin-top: 200px;
@@ -476,72 +623,25 @@ html {
 //   }
 // }
 
-/* ------------ hero styling ------------ */
-.hero {
-  height: 75vh;
-  width: 100vw;
-  background: #fff;
-  border-radius: 100% 0% 63% 37% / 0% 70% 30% 100%;
-  @include flex();
-  .hero-container {
-    height: 60vh;
-    width: 80vw;
-    @include flex();
-    overflow: hidden;
-    .hero-left, .hero-right {
-      width: 50%;
-      margin: 10px;
-    }
-    .hero-left {
-      @include flex();
-      flex-direction: column;
-      align-items: start;
-      h2 {
-        font-size: 42px;
-      }
-      p {
-        font-family: 'Josefin Sans', sans-serif;
-      }
-      .enroll-btn {
-        text-decoration: none;
-        margin-top: 10px;
-        color: #fff;
-        border: 1px solid #fefefe;
-        padding: 10px 15px;
-        cursor: pointer;
-        background: #2f64f3;
-        border-radius: 20px;
-        transition: all 0.3s ease-in-out;
-        &:hover {
-          background: none;
-          color: #000;
-          border: 1px solid #000;
-        }
-      }
-    }
-    .hero-right {
-      height: 100%;
-      img {
-        height: 80%;
-      }
-    }
-  
-  }
-}
-
 .faq {
   padding-top: 50px;
   margin-top: 100px;
   height: 100%;
   width: 100vw;
   @include flex();
-  // background: #fff;
   flex-direction: column;
-  // border-radius: 20% 80% 25% 75% / 70% 52% 48% 30%;
-   h2 {
+  @include sm {
+    padding-top: 10px;
+    margin-top: 40px;
+  }
+  // background: url('../assets/images/faq.jpg');
+  // background-position: center;
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  h2 {
     margin-bottom: 20px;
     color: #fff;
-   }
+  }
   .faq-main {
     height: 90%;
     width: 40%;
@@ -552,6 +652,10 @@ html {
     @include flex();
     align-items: start;
     justify-content: space-around;
+    transition: all 0.3s ease-in-out;
+    @include sm {
+      width: 95%;
+    }
     h2 {
       text-align: center;
       margin: 20px;
@@ -559,25 +663,26 @@ html {
       color: #000;
     }
     .faqcard {
-       padding-left: 10px;
-       padding-bottom: 10px;
-       transition: all 0.3s ease-in-out;
+      padding-left: 10px;
+      padding-bottom: 10px;
 
-       .qus {
+      .qus {
         @include flex();
         justify-content: start;
         cursor: pointer;
         span {
           font-size: 28px;
         }
-       }
-       .ans {
+        h2 {
+          text-align: left;
+        }
+      }
+      .ans {
         padding: 0px 10px 0px 10px;
-       }
+      }
     }
   }
 }
-
 
 @media (max-width: 998px) {
   .main-card--cointainer {
@@ -605,20 +710,20 @@ html {
   h2 {
     font-size: 32px;
     margin-bottom: 20px;
-    }
+  }
   .register-form {
     @include flex();
     flex-direction: column;
     input {
-       @include btn();
-       margin: 10px;
-       color: #000;
-       &::placeholder {
+      @include btn();
+      margin: 10px;
+      color: #000;
+      &::placeholder {
         color: #000;
-       }
-       &:hover {
+      }
+      &:hover {
         background: #2f64f3;
-       }
+      }
     }
     button {
       @include btn();
@@ -630,21 +735,88 @@ html {
   }
 }
 
-.logout {
-  @include btn();
-}
 @mixin container() {
   height: 90vh;
   width: 100vw;
   @include flex();
   border-radius: 100% 0% 63% 37% / 0% 70% 30% 100%;
   background: #fff;
+  @include sm {
+    border-radius: 11% 89% 14% 86% / 91% 0% 100% 9%;
+  }
 }
 
 .about {
   @include container();
+  flex-direction: column;
+  p {
+    @include sm {
+      width: 80%
+    }
+  }
 }
 
 .contact {
   @include container();
+}
+
+.payment {
+  padding-top: 12vh;
+  @include container();
+  flex-direction: column;
+  .user {
+    h3 {
+      font-size: 22px;
+      text-align: center;
+    }
+  }
+  .paymethod {
+    width: 100%;
+    @include flex();
+    flex-direction: column;
+    .methods {
+      .pay {
+        height: 80px;
+        width: 320px;
+        @include flex();
+        justify-content: space-around;
+        border: 0.5px solid #000;
+        border-radius: 20px;
+        margin: 10px 0 10px 0;
+        cursor: pointer;
+        p {
+          font-size: 22px;
+        }
+        img {
+          height: 80%;
+        }
+      }
+    }
+  }
+}
+
+.enroll-details {
+  // text-align: center;
+  border: 0.5px solid #000;
+  border-radius: 20px;
+  padding: 10px 20px 10px 20px;
+  margin-bottom: 10px;
+  h4 {
+    margin: 10px 0 10px 0;
+    border-bottom: 0.8px solid #000;
+  }
+
+  p {
+    margin: 10px 0 10px 0;
+  }
+}
+
+.profile {
+  @include container();
+  flex-direction: column;
+  .user {
+    h2 {
+      margin-bottom: 15px;
+    }
+  }
 }

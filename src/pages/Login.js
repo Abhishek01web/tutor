@@ -5,6 +5,8 @@ const Login = () => {
     const regisData = useLocation();
     const [userData, setUserData] = useState(regisData.state);
     console.log(userData);
+    // const {email , password} = userData; 
+    // alert(`Your loing data email = ${email} pass = ${password}`);
     
     const [formData, setFormData] = useState({
         email: '',
@@ -18,13 +20,24 @@ const Login = () => {
           [name]: value
         }));
       };
+      // const {emaill, passwordl} = formData;
+
       const navigate = useNavigate();
       const handleSubmit = event => {
         event.preventDefault();
-        alert(`user credential => email = ${formData.email} pass = ${formData.password} `);
-        localStorage.setItem('email', formData.email);
-        navigate('/payment', {state: formData});
-        window.location.reload();
+          alert(`user credential => email = ${formData.email} pass = ${formData.password} `);
+          localStorage.setItem('email', formData.email);
+          if(userData){
+            // const userCoursData = [
+            //   userData,
+            //   formData
+            // ]
+            navigate('/payment', {state: userData});
+            window.location.reload();
+          } else {
+            navigate('/');
+            window.location.reload();
+          }
       };
 
 

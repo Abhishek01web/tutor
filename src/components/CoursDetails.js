@@ -15,9 +15,9 @@ const CoursDetails = () => {
     const locData = localStorage.getItem('email');
     console.log(locData);
     if(locData){
-      navigate("/payment");
+      navigate("/payment", {state:Data});
     } else {
-      navigate("/register");
+      navigate("/register", {state:Data});
     }
   }
 
